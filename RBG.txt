@@ -1,0 +1,12 @@
+Name: Group 6 
+Stack: MERN
+GitHub Repo link: https://github.com/austinobnillas/RBG-reviews
+Project name: RBG (Reviews by Gamers)
+Project description: A game review app where users can post their thoughts on the game they are playing or had just played.
+MVP (Minimum Viable Product) features: 
+    - Basic CRUD functions with validations 
+    - CSS
+    - Project on GitHub w/ .gitignore file
+Bonus feature(s): 
+    - Login and Registration with validations using MERN stack.
+    - protected routes

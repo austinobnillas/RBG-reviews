@@ -1,4 +1,10 @@
 Name: Group 6 
+Roles: 
+    Austin Obnillas - Backend Dev
+    Fredy Raigoza - Backend Dev
+    Rheanne Bande - Frontend Dev
+    Brian Alvarez - Frontend Dev
+    Joseph Ongjunco - Frontend Dev
 Stack: MERN
 GitHub Repo link: https://github.com/austinobnillas/RBG-reviews
 Project name: RBG (Reviews by Gamers)

@@ -1,1 +1,3 @@
-Coding Dojo Project and Algos Group 6 Project
+#Coding Dojo Project and Algos Group 6 Project
+
+##RBG (Reviews By Gamers)

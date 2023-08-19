@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 // import axios from "axios";
 
 // PLACE HOLDERS vvvv
-const Home = ({allReviews, deleteReview}) => {
+const Home = (/*{allReviews, deleteReview}*/) => {
     const navigate = useNavigate();
 
     const deleteHandler = e => {
@@ -13,7 +13,8 @@ const Home = ({allReviews, deleteReview}) => {
 
     return (
         <div>
-            <nav>
+            <h1>This is a Homepage Test</h1>
+            {/* <nav>
                 <h1>RBG</h1>
                 <ul>
                     <li><p>Home</p></li>
@@ -43,11 +44,11 @@ const Home = ({allReviews, deleteReview}) => {
                             <td>{}</td>
                             <td>{}</td>
                             {/* Add edit link */}
-                            <td><Link to={'/'}>Edit</Link>| <p onClick={deleteHandler} id={review._id}>Delete</p></td>
+                            {/* <td><Link to={'/'}>Edit</Link>| <p onClick={deleteHandler} id={review._id}>Delete</p></td>
                         </tr>
                     </tbody>
                 </table>
-            })}
+            })} */}
         </div>
     )
 }

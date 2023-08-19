@@ -13,4 +13,3 @@ Node.js | MongoDB | Express | React | Postman | Bootstrap
 
 Austin's Test
 
-Fredy finally got it 

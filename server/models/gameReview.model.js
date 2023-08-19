@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const GameReviewSchema = mongoose.Schema({
+const GameReviewSchema = new mongoose.Schema({
 
     gameTitle: {
         type: String,
@@ -8,8 +8,9 @@ const GameReviewSchema = mongoose.Schema({
     },
 
     creator: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        type: String
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "User"
     },
 
     platforms: {
@@ -26,8 +27,8 @@ const GameReviewSchema = mongoose.Schema({
 
     rating: {
         type: Number,
-        required: true,
-        enum: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        required: [true, "A rating is required"],
+        // enum: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     },
 
     comments: {

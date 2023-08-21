@@ -8,7 +8,7 @@ const CreateReview = (props) => {
 
     const [gameTitle, setGameTitle] = useState("");
     const [platforms, setPlatforms] = useState("");
-    const [rating, setRating] = useState("");
+    const [rating, setRating] = useState(0);
     const [comments, setComments] = useState("");
     const [errors, setErrors] = useState([]);
 
@@ -22,18 +22,30 @@ const CreateReview = (props) => {
             platforms,
             rating,
             comments
-        })
+        }, {withCredentials: true})
+
         .then((res)=>{
             console.log(res.data);
-            setGameTitle("");
-            setPlatforms("");
-            setRating("");
-            setComments("");
+            // setGameTitle("");
+            // setPlatforms("");
+            // setRating("");
+            // setComments("");
             navigate("/");
         })
         .catch((err) =>{
+            const loginError = err.response.data.msg;
+                if (loginError) {
+                    alert(loginError);
+                }
             console.log(err.response.data.errors);
-            setErrors(err.response.data.errors);
+            console.log(err)
+            const errorResponse = err.response.data.errors;
+                const errorArr = []
+                for (const key of Object.keys(errorResponse)) {
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr);
+            // setErrors(err.response.data.errors);
         });
     }
     
@@ -51,12 +63,15 @@ const CreateReview = (props) => {
             <div className="p-5 mb-4 w-75 mx-auto bg-body-tertiary rounded-3">
                 <div className="container-fluid py-5">
                     <form onSubmit={submitHandler}>
+                    {errors.map((err, index) => (
+                    <p className="errors" key={index}>{err}</p>
+                ))}
                         <div className="d-flex justify-content-around">
                             <div>
                                 <label className="form-label" >Game Title:</label>
                                 <input 
                                 onChange={(e) => setGameTitle(e.target.value)} 
-                                value={gameTitle}
+                                // value={gameTitle}
                                 name="gameTitle"
                                 type="text" 
                                 className="form-control"/>
@@ -80,13 +95,10 @@ const CreateReview = (props) => {
                             </div>
                         </div>
                         <div className="d-flex justify-content-center mb-3">
-                            <select
-                            className="form-select w-auto"
-                            onChange={(e) => setRating(e.target.value)} 
-                                value={rating}
-                                name="rating"
-                            >
-                                <option selected>Rating:(1-10)</option>
+                        <label className="form-label" htmlFor="rating">Rating: </label>
+                            <select className="form-select w-auto" name="rating" onChange={(e) => setRating(e.target.value)} >
+                                <option value={0}>0</option>
+                                <option value={1}>1</option>
                                 <option value={1}>1</option>
                                 <option value={2}>2</option>
                                 <option value={3}>3</option>

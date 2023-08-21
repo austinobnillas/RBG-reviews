@@ -8,6 +8,8 @@ import './App.css'
 import Home from './components/HomePage';
 import CreateReview from './components/CreateReview';
 import UpdateReview from './components/UpdateReview';
+import Login from './components/login';
+import UserForm from './components/register';
 
 function App() {
   // const [allReviews, setAllReviews] = useState([]);
@@ -24,6 +26,8 @@ function App() {
     <BrowserRouter>
       <div>
         <Routes>
+          <Route path={'/login'} element={<Login />} />
+          <Route path={'/register'} element={<UserForm />} />
           <Route path={'/'} element={<Home /*allItems={allReviews*/ />} />
           <Route path={'/create'} element={<CreateReview />} />
           <Route path={'/update/:id'} element={<UpdateReview />} />

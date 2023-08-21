@@ -39,9 +39,9 @@ module.exports = {
         if (userToken.username === req.body.creator) {
             GameReview.findOneAndUpdate({_id: req.params.id}, req.body, { new: true, runValidators: true })
                 .then(updatedReview => res.json(updatedReview))
-                .catch(err => res.status(400).json(err, {message: "Something went wrong!"}))
+                .catch(err => res.status(400).json(err))
         } else {
-            res.status(400).json({message: "Only the creator of the review can edit this."})
+            res.status(400).json({msg: "Only the creator of the review can edit this."})
         }
         // try {
         //     const userToken = jwt.verify(req.cookies.userToken, secret);
@@ -69,7 +69,7 @@ module.exports = {
                 .then(deletedReview => res.json(deletedReview))
                 .catch(err => res.json(err));
         } else {
-            res.status(400).json({message: "Only the creator of the review can delete this."})
+            res.status(400).json({msg: "Only the creator of the review can delete this."})
         }
         // try {
         //     const userToken = jwt.verify(req.cookies.usertoken, secret);

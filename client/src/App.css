@@ -1,13 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Rubik:wght@300;400;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
 }
 /* Home Page CSS Section, will improve once full functionality confirmed. */
 .main-page-container {
-  margin: 0 2em;
   background: linear-gradient(to right bottom,#FCD9DF, #CFE0F8);
   height: 250vh;
   width: 100%;
+}
+
+.main-logo {
+  font-family: Rubik;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.main-logo:hover {
+  background: -webkit-linear-gradient(360deg, #ee4d5f, #60b6e5, #42E695);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .home-navbar {
@@ -23,10 +37,70 @@
   flex-direction: row;
   align-items: center;
   margin-left: auto;
+  font-family: DM Sans;
+  cursor: pointer;
 }
 
 .nav-list > li {
   padding: 20px;
+}
+
+.logout-btn {
+  background: linear-gradient(to bottom left, #FF6CAB,#7366ff);
+  border-radius: 20px;
+  border: none;
+  color: #ffff;
+  width: 6em;
+  height: 35px;
+}
+
+.logout-btn:hover {
+  box-shadow: 0 0 15px #F869D5;
+}
+
+.underline {
+  font-family: DM Sans;
+  font-weight: 400;
+  font-size: 17px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+
+.underline:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #000000;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.underline:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
+.post-review-btn {
+  background: linear-gradient(to bottom right, #F869D5,#5650DE);
+  border-radius: 20px;
+  border: none;
+  color: #ffff;
+  width: 120px;
+  height: 20px;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  font-family: DM Sans;
+}
+
+.post-review-btn:hover{
+  box-shadow: 0 0 15px #5650DE;
 }
 
 .inner-body-container {
@@ -39,6 +113,10 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 3em;
+}
+
+.reviews-container {
+  margin: 0 4em;
 }
 
 .table {

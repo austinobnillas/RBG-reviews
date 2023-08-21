@@ -1,5 +1,5 @@
 import React, { useState } from  'react';
-import ('.register.css')
+import ('.Register.css')
 import axios from 'axios'
     
 const UserForm = (props) => {

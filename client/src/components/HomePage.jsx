@@ -35,13 +35,23 @@ const Home = () => {
         deleteReview(reviewId);
     }
 
+    // const logout = () => {
+    //     axios.post('http://localhost:8000/api/logout', {}, {withCredentials: true})
+    //         .then(res => {
+    //             navigate('/')
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+
     return (
         <div className="main-page-container">
             <nav className="home-navbar">
-                <h1>RBG</h1>
+                <h1 className="main-logo">RBG</h1>
                 <ul className="nav-list">
-                    <li><p>Home</p></li>
-                    <li><button onClick={logout} >Log Out</button></li>
+                    <li><Link to={'/'} className="underline" style={{textDecoration: "none", color:"black"}}>Home</Link></li>
+                    <li className="underline">About</li>
+                    <li className="underline">Contact</li>
+                    <li><button className="logout-btn" onClick={logout}>Log Out</button></li>
                 </ul>
             </nav>
             <div className="inner-body-container">
@@ -55,16 +65,16 @@ const Home = () => {
                         <div>
                             <div className="subheading">
                                 <h3>See what the community has to say:</h3>
-                                <Link to={'/create'}>Post a Review</Link>
+                                <Link to={`/new/${review._id}`}>Post a Review</Link>
                             </div>
                             <table className="table" key={review._id}>
                                 <thead className="table-head">
                                     <tr>
                                         <th>Username</th>
                                         <th>Game</th>
-                                        <th>Platform(s)</th>
                                         <th>Rating</th>
                                         <th>Review</th>
+                                        <th>Comments</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -73,12 +83,9 @@ const Home = () => {
                                         <td>{review.creator}</td>
                                         <td>{review.gameTitle}</td>
                                         <td>{review.platforms}</td>
-                                        <td>{review.rating}/10</td>
+                                        <td>{review.rating}</td>
                                         <td>{review.comments}</td>
-                                        <td style={{display:'flex', flexDirection:"row", justifyContent:"space-evenly"}}>
-                                            <Link to={`/update/${review._id}`} style={{textDecoration:"none", color:"gray"}} >Edit</Link>
-                                            <p onClick={() => deleteReview(review._id)} className="delete-icon">Delete</p>
-                                        </td>
+                                        <td style={{display:'flex', flexDirection:"row", justifyContent:"space-evenly"}}><Link style={{textDecoration:"none", color:"gray"}}to={'/'}>Edit</Link><p onClick={deleteHandler} id={review._id} className="delete-icon">Delete</p></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -6,6 +6,8 @@ import axios from 'axios';
 import './App.css'
 
 import Home from './components/HomePage';
+import CreateReview from './components/CreateReview';
+import UpdateReview from './components/UpdateReview';
 
 function App() {
   // const [allReviews, setAllReviews] = useState([]);
@@ -23,6 +25,8 @@ function App() {
       <div>
         <Routes>
           <Route path={'/'} element={<Home /*allItems={allReviews*/ />} />
+          <Route path={'/create'} element={<CreateReview />} />
+          <Route path={'/update/:id'} element={<UpdateReview />} />
         </Routes>
       </div>
     </BrowserRouter>

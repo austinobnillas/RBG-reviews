@@ -42,14 +42,14 @@ const Home = () => {
                 { allReviews.length === 0 ? 
                 <div>
                     <p>No Reviews Yet</p>
-                    <Link to={'/'}>Post a Review</Link>
+                    <Link to={'/create'}>Post a Review</Link>
                 </div> 
                 : allReviews.map(review => {
                     return (
                         <div>
                             <div className="subheading">
                                 <h3>See what the community has to say:</h3>
-                                <Link to={`/new/${review._id}`}>Post a Review</Link>
+                                <Link to={'/create'}>Post a Review</Link>
                             </div>
                             <table className="table" key={review._id}>
                                 <thead className="table-head">
@@ -69,7 +69,7 @@ const Home = () => {
                                         <td>{review.platforms}</td>
                                         <td>{review.rating}</td>
                                         <td>{review.comments}</td>
-                                        <td style={{display:'flex', flexDirection:"row", justifyContent:"space-evenly"}}><Link style={{textDecoration:"none", color:"gray"}}to={'/'}>Edit</Link><p onClick={deleteHandler} id={review._id} className="delete-icon">Delete</p></td>
+                                        <td style={{display:'flex', flexDirection:"row", justifyContent:"space-evenly"}}><Link to={`/update/${review._id}`} style={{textDecoration:"none", color:"gray"}} >Edit</Link><p onClick={deleteHandler} id={review._id} className="delete-icon">Delete</p></td>
                                     </tr>
                                 </tbody>
                             </table>

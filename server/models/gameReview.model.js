@@ -4,7 +4,8 @@ const GameReviewSchema = new mongoose.Schema({
 
     gameTitle: {
         type: String,
-        required: [true, 'Required Field']
+        required: [true, 'Game Title is Required'], 
+        minLength: [3, "Must be at least 3 characters."]
     },
 
     creator: {
@@ -15,7 +16,8 @@ const GameReviewSchema = new mongoose.Schema({
 
     platforms: {
         type: String,
-        required: [true, "Must be 2 or more characters"]
+        required: [true, "Platform(s) is Required"],
+        minLength: [2, "Must be at least 3 characters."]
     },
 
     // rating: {
@@ -26,14 +28,15 @@ const GameReviewSchema = new mongoose.Schema({
     // },
 
     rating: {
-        type: Number,
+        type: String,
         required: [true, "A rating is required"],
-        // enum: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        enum: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     },
 
     comments: {
         type: String,
-        maxLength: [500, 'Must be 500 or characters or less']
+        minLength: [2, "Comments must be at least 3 characters."],
+        maxLength: [500, 'Comments must  be 500 or characters or less']
     },
 },
     {

@@ -9,11 +9,12 @@ const UpdateReview = (props) => {
     const {id} = useParams();
 
     const [revGameTitle, setRevGameTitle] = useState("");
+    const [creator, setCreator] = useState('');
     const [revPlatforms, setRevPlatforms] = useState("");
     const [revRating, setRevRating] = useState("");
     const [revComments, setRevComments] = useState("");
     const [errors, setErrors] = useState([]);
-    console.log(`http://localhost:8000/api/edit/${id}`);
+    // console.log(`http://localhost:8000/api/edit/${id}`);
 
     const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ const UpdateReview = (props) => {
         .then((res) =>{
             console.log(res.data);
             setRevGameTitle(res.data.gameTitle);
+            setCreator(res.data.creator)
             setRevPlatforms(res.data.platforms);
             setRevRating(res.data.rating);
             setRevComments(res.data.comments);
@@ -36,17 +38,30 @@ const UpdateReview = (props) => {
 
         axios.patch(`http://localhost:8000/api/edit/${id}`, {
             gameTitle: revGameTitle,
+            creator: creator,
             platforms: revPlatforms,
             rating: revRating,
             comments: revComments
-        })
+        }, {withCredentials: true})
         .then((res)=>{
             console.log(res.data);
             navigate("/");
         })
         .catch((err) =>{
+            const loginError = err.response.data.msg;
+                if (loginError) {
+                    alert(loginError);
+                }
             console.log(err.response.data.errors);
-            setErrors(err.response.data.errors);
+            console.log(err)
+            const errorResponse = err.response.data.errors;
+                const errorArr = []
+                for (const key of Object.keys(errorResponse)) {
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr);
+            // console.log(err.response.data.errors);
+            // setErrors(err.response.data.errors);
         });
     }
 
@@ -65,6 +80,9 @@ const UpdateReview = (props) => {
             <div className="p-5 mb-4 w-75 mx-auto bg-body-tertiary rounded-3">
                 <div className="container-fluid py-5">
                     <form onSubmit={submitHandler}>
+                    {errors.map((err, index) => (
+                    <p className="errors" key={index}>{err}</p>
+                ))}
                         <div className="d-flex justify-content-around">
                             <div>
                                 <label className="form-label" >Game Title:</label>

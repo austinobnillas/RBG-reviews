@@ -15,15 +15,21 @@ const Home = () => {
     }, [])
 
     const deleteReview = (id) => {
-        axios.delete(`http://localhost:8000/api/delete/${id}`)
+        axios.delete(`http://localhost:8000/api/delete/${id}`, {withCredentials: true})
             .then(res => {
                 const updatedAllReviews = allReviews.filter(reviews => reviews._id !== res.data._id)
                 setAllReviews(updatedAllReviews);
                 navigate('/');
             })
+            .catch((err) => {
+                const loginError = err.response.data.msg;
+                alert(loginError);
+            })
     }
-
-
+    const logout = () => {
+        axios.post(`http://localhost:8000/api/logout`, {}, {withCredentials: true})
+            .then(alert('Logged out'))
+    }
     const deleteHandler = e => {
         const reviewId = e.target.id;
         deleteReview(reviewId);
@@ -35,7 +41,7 @@ const Home = () => {
                 <h1>RBG</h1>
                 <ul className="nav-list">
                     <li><p>Home</p></li>
-                    <li><button>Log Out</button></li>
+                    <li><button onClick={logout} >Log Out</button></li>
                 </ul>
             </nav>
             <div className="inner-body-container">
@@ -56,9 +62,9 @@ const Home = () => {
                                     <tr>
                                         <th>Username</th>
                                         <th>Game</th>
+                                        <th>Platform(s)</th>
                                         <th>Rating</th>
                                         <th>Review</th>
-                                        <th>Comments</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -67,9 +73,12 @@ const Home = () => {
                                         <td>{review.creator}</td>
                                         <td>{review.gameTitle}</td>
                                         <td>{review.platforms}</td>
-                                        <td>{review.rating}</td>
+                                        <td>{review.rating}/10</td>
                                         <td>{review.comments}</td>
-                                        <td style={{display:'flex', flexDirection:"row", justifyContent:"space-evenly"}}><Link to={`/update/${review._id}`} style={{textDecoration:"none", color:"gray"}} >Edit</Link><p onClick={deleteHandler} id={review._id} className="delete-icon">Delete</p></td>
+                                        <td style={{display:'flex', flexDirection:"row", justifyContent:"space-evenly"}}>
+                                            <Link to={`/update/${review._id}`} style={{textDecoration:"none", color:"gray"}} >Edit</Link>
+                                            <p onClick={() => deleteReview(review._id)} className="delete-icon">Delete</p>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

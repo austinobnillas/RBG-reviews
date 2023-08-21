@@ -35,13 +35,13 @@ const Home = () => {
         deleteReview(reviewId);
     }
 
-    const logout = () => {
-        axios.post('http://localhost:8000/api/logout', {}, {withCredentials: true})
-            .then(res => {
-                navigate('/')
-            })
-            .catch(err => console.log(err))
-    }
+    // const logout = () => {
+    //     axios.post('http://localhost:8000/api/logout', {}, {withCredentials: true})
+    //         .then(res => {
+    //             navigate('/')
+    //         })
+    //         .catch(err => console.log(err))
+    // }
 
     return (
         <div className="main-page-container">

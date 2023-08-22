@@ -38,6 +38,7 @@ const Home = () => {
     const deleteHandler = e => {
         const reviewId = e.target.id;
         deleteReview(reviewId);
+        navigate('/home');
     }
 
     return (
@@ -63,18 +64,19 @@ const Home = () => {
                 </div> 
                 : allReviews.map(review => {
                     return (
-                        <div className="review-list-container">
+                        <div className="review-list-container mb-4">
                             <div className="review" key={review._id}>
                                 <ul className="inner-review p-4">
                                     <div className="profile-cont">
                                         <img className="profile-img" src={ProfileImg} alt="profile image"></img>
                                     </div>
                                     
-                                    <div className="d-flex flex-column">
+                                    <div className="d-flex flex-column" style={{width:"30em"}}>
                                         <div className="review-top-section d-flex flex-row justify-content-between">
-                                            <div className="creator-title d-flex flex-row justify-content-between">
-                                                <li style={{fontWeight: "800"}}>{review.creator}</li>
-                                                <li style={{fontWeight: "800"}}>{review.gameTitle}</li>
+                                            <div className="creator-title d-flex flex-row">
+                                                <li style={{fontWeight: "800", color: "#A3A4BE"}}>{review.creator}</li>
+                                                <p className="mx-2"></p>
+                                                <li style={{fontWeight: "500", color:"#502D55"}}>{review.gameTitle}</li>
                                             </div>
                                             <div className="actions-cont d-flex flex-row justify-content-evenly">
                                                 <Link to={`/update/${review._id}`} className="text-decoration-none">Edit Post</Link>

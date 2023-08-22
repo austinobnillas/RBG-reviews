@@ -132,7 +132,7 @@ li {
   align-items: center;
   background: #FFFF;
   border-radius: 10px;
-  /* width: 80em; */
+  width: 58em;
 }
 
 .inner-review {
@@ -145,14 +145,13 @@ li {
 
 .profile-cont {
   width: 80px;
+  margin-right: 2em;
 }
 
 .profile-img {
   height: 50px;
   width: 50px;
-  /* padding: 5px; */
   border-radius: 40px;
-  /* border: 2px solid rgba(200, 199, 199, 0.782); */
 }
 
 .emphasize-text {
@@ -169,17 +168,18 @@ li {
   height: 2em;
   font-family: DM Sans;
   font-size: 18px;
+  width: 40em;
 }
 
 .creator-title {
-  width:100px;
+  width:20em;
   font-family: DM Sans;
   font-weight: 600;
 }
 
 .actions-cont {
   width: 10em;
-  margin-left: 470px;
+  /* margin-left: 470px; */
 }
 
 .comments {
@@ -222,6 +222,19 @@ li {
   font-family: DM Sans;
 }
 
+.login-btn {
+  background: #000000b8;
+  border: none;
+  border-radius: 20px;
+  color: #FFFF;
+  height: 40px;
+  width: 100px;
+}
+
+.login-btn:hover {
+  box-shadow: 0 0 20px #ffff;
+}
+
 .right {
   right: 0;
   background: rgba(144, 128, 106, 0.63);
@@ -238,4 +251,41 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+/* Registration Page CSS */
+.reg-bg {
+  background-image: url('./assets/registration-bg.jpeg');
+  background-position: 92% 0;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.reg-left {
+  left: 0;
+}
+
+/* Control the right side */
+.reg-right {
+  right: 0;
+  background: linear-gradient(to bottom right, #80A4CB, #cce0f3);
+}
+
+.sign-up-btn {
+  /* background: linear-gradient(to top left, #A32CDF, #106AD2); */
+  background: #415771;
+  border: none;
+  border-radius: 20px;
+  color: #FFFF;
+  height: 40px;
+  width: 100px;
 }

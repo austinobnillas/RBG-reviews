@@ -16,7 +16,7 @@ const Login = () => {
 
         axios.post("http://localhost:8000/api/login", {username, password}, {withCredentials: true})
         .then((res) => {
-            navigate('/')
+            navigate('/home')
         }) 
         .catch((err)=>{
             alert(err.response.data.msg)
@@ -33,17 +33,15 @@ const Login = () => {
     return (
         <>
             <div className="login-bg split left">
-                {/* <div className="login-bg"> */}
-                    <div className="centered text-white">
-                        <h1>Reviews By Gamers</h1>
-                        <p>Real reviews, by gamers like you.</p>
-                    {/* </div> */}
+                <div className="centered text-white">
+                    <h1>Reviews By Gamers</h1>
+                    <p>Real reviews, by gamers like you.</p>
                 </div>
             </div>
             <div className="login-container split right">
                 <div className="centered">
-                    <h1 style={{fontFamily:"Rubik"}}>RGB</h1>
-                    <h2 className="mb-4 mt-4">Welcome Back!</h2>
+                    <h1 style={{fontFamily:"Rubik", fontWeight:"800"}}>RBG</h1>
+                    <h2 className="mb-4 mt-4">Sign In | <Link to={'/register'} className="text-decoration-none text-dark" >Register</Link></h2>
                     <form onSubmit={handleSubmit}>
                     {/* {errors.map((err, index) => (
                             <p key="{index}">{err}</p>
@@ -54,17 +52,15 @@ const Login = () => {
                         <input className="form-control" type="text" onChange={(e) => setUsername(e.target.value)} />
                         </p>
                     </div>
-                    <div>
-                        <p>
+                    <div className="mb-4">
                         <label className="form-label d-flex">Password</label>
-                        <input className="form-control" type="text" onChange={(e) => setPassword(e.target.value)} />
-                        </p>
+                        <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} />
                     </div>    
                     <div className="mb-4">
-                        <button className="login-btn btn btn-dark text-white" type="submit">Login</button>
+                        <button className="login-btn" type="submit">Login</button>
                     </div>
                     </form>
-                    <div><p>New to the Community? <Link to={'/register'}>Sign Up</Link></p></div>
+                    {/* <div><p>New to the Community? <Link to={'/register'}>Sign Up</Link></p></div> */}
                 </div>
             </div>
         </>

@@ -9,10 +9,11 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/viewreviews')
+        axios.get('http://localhost:8000/api/viewreviews', {withCredentials: true})
             .then(res => setAllReviews(res.data))
             .catch(err => {
                 console.log(err)
+                navigate('/')
         })
     }, [])
 
@@ -21,7 +22,7 @@ const Home = () => {
             .then(res => {
                 const updatedAllReviews = allReviews.filter(reviews => reviews._id !== res.data._id)
                 setAllReviews(updatedAllReviews);
-                navigate('/');
+                navigate('/home');
             })
             .catch((err) => {
                 const loginError = err.response.data.msg;
@@ -38,7 +39,7 @@ const Home = () => {
     const deleteHandler = e => {
         const reviewId = e.target.id;
         deleteReview(reviewId);
-        navigate('/home');
+        useNavigate('/home');
     }
 
     return (
@@ -46,7 +47,7 @@ const Home = () => {
             <nav className="home-navbar">
                 <h1 className="main-logo">RBG</h1>
                 <ul className="nav-list">
-                    <li><Link to={'/'} className="underline text-decoration-none text-dark">Home</Link></li>
+                    <li><Link to={'/home'} className="underline text-decoration-none text-dark">Home</Link></li>
                     <li className="underline">About</li>
                     <li className="underline">Contact</li>
                     <li><button className="logout-btn" onClick={logout}>Log Out</button></li>
@@ -58,9 +59,9 @@ const Home = () => {
                     <Link to={`/create`} className="post-review-btn">Post a Review</Link>
                 </div>
                 { allReviews.length === 0 ? 
-                <div>
+                <div className="d-flex flex-column justify-content-center align-items-center">
                     <p>No Reviews Yet</p>
-                    <Link to={'/create'}>Post a Review</Link>
+                    <Link to={'/create'} className="btn btn-secondary">Post a Review</Link>
                 </div> 
                 : allReviews.map(review => {
                     return (
@@ -79,7 +80,7 @@ const Home = () => {
                                                 <li style={{fontWeight: "500", color:"#502D55"}}>{review.gameTitle}</li>
                                             </div>
                                             <div className="actions-cont d-flex flex-row justify-content-evenly">
-                                                <Link to={`/update/${review._id}`} className="text-decoration-none">Edit Post</Link>
+                                                <Link to={`/update/${review._id}`} className="text-decoration-none">Edit</Link>
                                                 <p onClick={deleteHandler} id={review._id} className="delete-icon">Delete</p>
                                             </div>
                                         </div>

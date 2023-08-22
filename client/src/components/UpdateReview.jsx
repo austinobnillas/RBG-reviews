@@ -45,7 +45,7 @@ const UpdateReview = (props) => {
         }, {withCredentials: true})
         .then((res)=>{
             console.log(res.data);
-            navigate("/");
+            navigate("/home");
         })
         .catch((err) =>{
             const loginError = err.response.data.msg;
@@ -68,23 +68,23 @@ const UpdateReview = (props) => {
 
 
     return(
-        <div className="container">
-            <div className="d-flex justify-content-around align-items-center">
-                <h1>Reviews By Gamers</h1>
-                <ul className="nav">
-                    <li className="nav-item"><a href="/">Home</a></li>
-                    <li className="nav-item"><a href="#">Sign Out</a></li>
+        <div className="update-container">
+            <div className="d-flex justify-content-between align-items-center text-white">
+                <ul className="update-nav d-flex justify-content-between align-items-center">
+                    <h1 className="text-white"style={{fontFamily: "Rubik"}}>Reviews By Gamers</h1>
+                    <li className=""><a className='update-home-btn d-flex' href="/home">Home</a></li>
+                    {/* <li className="nav-item"><a href="#">Sign Out</a></li> */}
                 </ul>
             </div>
-            <h2 className="text-center">Share your thoughts with others</h2>
-            <div className="p-5 mb-4 w-75 mx-auto bg-body-tertiary rounded-3">
+            <div className="form-container p-5 mt-4 w-75 mx-auto rounded-3">
+                <h2 className="text-center">Edit Review</h2>
                 <div className="container-fluid py-5">
-                    <form onSubmit={submitHandler}>
+                    <form className='d-flex flex-column align-items-center' onSubmit={submitHandler}>
                     {errors.map((err, index) => (
                     <p className="errors" key={index}>{err}</p>
                 ))}
-                        <div className="d-flex justify-content-around">
-                            <div>
+                        <div className="row d-flex justify-content-around">
+                            <div className='col'>
                                 <label className="form-label" >Game Title:</label>
                                 <input 
                                 onChange={(e) => setRevGameTitle(e.target.value)} 
@@ -97,7 +97,7 @@ const UpdateReview = (props) => {
                         : null
                     }
                             </div>
-                            <div className="mb-5">
+                            <div className="col mb-5">
                                 <label className="form-label">Platform(s):</label>
                                 <input 
                                 onChange={(e) => setRevPlatforms(e.target.value)} 
@@ -111,7 +111,8 @@ const UpdateReview = (props) => {
                     }
                             </div>
                         </div>
-                        <div className="d-flex justify-content-center mb-3">
+                        <div className="rating-container d-flex flex-column justify-content-center align-items-center mb-3">
+                            <label htmlFor='revRating' className='form-label'>Rating</label>
                             <select
                             className="form-select w-auto"
                             onChange={(e) => setRevRating(e.target.value)} 
@@ -136,7 +137,7 @@ const UpdateReview = (props) => {
                     }
                         </div>
                         <div>
-                            <div className="mb-3">
+                            <div className="comment-section mb-3">
                                 <label className="form-label">Comment(s):</label>
                                 <textarea
                                 onChange={(e) => setRevComments(e.target.value)} 

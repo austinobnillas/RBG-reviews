@@ -22,16 +22,16 @@ const UserForm = (props) => {
                 navigate('/');
             })
         .catch((err) => {
-            const errorResponse = err.response.data.errors; 
-            const errorMsg = err.response.data.msg
-            if (errorMsg) {
-                alert(errorMsg)
-            }
-            const errorArr = [];
-            for (const key of Object.keys(errorResponse)) {
-                errorArr.push(errorResponse[key].message)
-            }
-            setErrors(errorArr);
+            // const errorResponse = err.response.data.errors; 
+            // const errorMsg = err.response.data.msg
+            // if (errorMsg) {
+            //     alert(errorMsg)
+            // }
+            // const errorArr = [];
+            // for (const key of Object.keys(errorResponse)) {
+            //     errorArr.push(errorResponse[key].message)
+            // }
+            setErrors(err.response.data.errors);
         })
         // const newUser = { username, email, password };
         // console.log("Welcome", newUser);
@@ -54,30 +54,33 @@ const UserForm = (props) => {
                     <h3 className='mb-4 mt-4'>Register | <Link to={'/'} className='text-decoration-none' style={{color:"#697A98"}}>Log In</Link ></h3>
                     <div className="reg-container">
                         <form onSubmit={ createUser }>
-                                {errors.map((err, index) => (
-                                    <p key="{index}">{err}</p>
-                                ))}
+                                {/* {errors.map((err, index) => (
+                                    <p className="text-danger" key="{index}">{err}</p>
+                                ))} */}
                             <div className='mb-4'>
                                 <label className="form-label d-flex" htmlFor="username" >Username </label> 
                                 <input className="reg-input form-control" type="text" name="username" onChange={ (e) => setUsername(e.target.value) } />
+                                {errors.username ? <p className='text-danger d-flex'>Username required</p> : null}
                             </div>
                             <div className='mb-4'>
                                 <label className="form-label d-flex" htmlFor="email">Email</label> 
                                 <input className="form-control" type="text" name="email" onChange={ (e) => setEmail(e.target.value) } />
+                                {errors.email ? <p className='text-danger d-flex'>Email required</p> : null}
                             </div>
                             <div className='row g-3 mb-4 d-flex flex-row'>
                                 <div className='col d-flex flex-column'>
                                     <label className="form-label d-flex" htmlFor="password">Password </label>
                                     <input className="form-control" type="password" name="password" onChange={ (e) => setPassword(e.target.value) } />
+                                    {errors.password ? <p className='text-danger d-flex'>{errors.password.message} </p> : null}
                                 </div>
                                 <div className='col mb-3'>
                                     <label className="form-label d-flex" htmlFor="confirmPassword" >Confirm Password </label>
                                     <input className="form-control" type="password" name="confirmPassword" onChange={ (e) => setConfirmPassword(e.target.value) } />
+                                    {errors.confirmPassword ? <p className='text-danger d-flex'>{errors.confirmPassword.message} </p> : null}
                                 </div>
                             </div>
                             <div>
                                 <input className="sign-up-btn mb-3" type="submit" value="Sign Up" />
-                                {/* <p>Already a User?<Link to={'/'} className='text-decoration-none text-secondary' >Log In</Link ></p> */}
                             </div>
                         </form>
                     </div>

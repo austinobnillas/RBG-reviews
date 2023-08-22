@@ -22,7 +22,7 @@ const Home = () => {
             .then(res => {
                 const updatedAllReviews = allReviews.filter(reviews => reviews._id !== res.data._id)
                 setAllReviews(updatedAllReviews);
-                navigate('/');
+                navigate('/home');
             })
             .catch((err) => {
                 const loginError = err.response.data.msg;
@@ -39,7 +39,7 @@ const Home = () => {
     const deleteHandler = e => {
         const reviewId = e.target.id;
         deleteReview(reviewId);
-        navigate('/home');
+        useNavigate('/home');
     }
 
     return (
@@ -47,7 +47,7 @@ const Home = () => {
             <nav className="home-navbar">
                 <h1 className="main-logo">RBG</h1>
                 <ul className="nav-list">
-                    <li><Link to={'/'} className="underline text-decoration-none text-dark">Home</Link></li>
+                    <li><Link to={'/home'} className="underline text-decoration-none text-dark">Home</Link></li>
                     <li className="underline">About</li>
                     <li className="underline">Contact</li>
                     <li><button className="logout-btn" onClick={logout}>Log Out</button></li>

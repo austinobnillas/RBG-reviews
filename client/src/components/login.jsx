@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 // import '.Login.css';
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -14,7 +16,7 @@ const Login = () => {
 
         axios.post("http://localhost:8000/api/login", {username, password}, {withCredentials: true})
         .then((res) => {
-            navigate('/')
+            navigate('/home')
         }) 
         .catch((err)=>{
             alert(err.response.data.msg)
@@ -29,30 +31,39 @@ const Login = () => {
             };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-            {/* {errors.map((err, index) => (
-                    <p key="{index}">{err}</p>
-                ))} */}
-            <div>
-                <p>
-                <label>Username</label>
-                <input type="text" onChange={(e) => setUsername(e.target.value)} />
-                </p>
+        <>
+            <div className="login-bg split left">
+                <div className="centered text-white">
+                    <h1>Reviews By Gamers</h1>
+                    <p>Real reviews, by gamers like you.</p>
+                </div>
             </div>
-            <div>
-                <p>
-                <label>Password</label>
-                <input type="text" onChange={(e) => setPassword(e.target.value)} />
-                </p>
-            </div>    
-            <div>
-                <button type="submit">Login</button>
+            <div className="login-container split right">
+                <div className="centered">
+                    <h1 style={{fontFamily:"Rubik", fontWeight:"800"}}>RBG</h1>
+                    <h2 className="mb-4 mt-4">Sign In | <Link to={'/register'} className="text-decoration-none text-dark" >Register</Link></h2>
+                    <form onSubmit={handleSubmit}>
+                    {/* {errors.map((err, index) => (
+                            <p key="{index}">{err}</p>
+                        ))} */}
+                    <div>
+                        <p>
+                        <label className="form-label d-flex">Username</label>
+                        <input className="form-control" type="text" onChange={(e) => setUsername(e.target.value)} />
+                        </p>
+                    </div>
+                    <div className="mb-4">
+                        <label className="form-label d-flex">Password</label>
+                        <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} />
+                    </div>    
+                    <div className="mb-4">
+                        <button className="login-btn" type="submit">Login</button>
+                    </div>
+                    </form>
+                    {/* <div><p>New to the Community? <Link to={'/register'}>Sign Up</Link></p></div> */}
+                </div>
             </div>
-            </form>
-
-        </div>
+        </>
     );
 }
 

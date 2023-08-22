@@ -51,23 +51,23 @@ const CreateReview = (props) => {
     
 
     return(
-        <div className="container">
+        <div className="create-container">
             <div className="d-flex justify-content-around align-items-center">
-                <h1>Reviews By Gamers</h1>
-                <ul className="nav">
-                    <li className="nav-item"><a href="/home">Home</a></li>
+                <ul className="update-nav d-flex justify-content-between align-items-center">
+                    <h1 style={{fontFamily:"Rubik"}}>Reviews By Gamers</h1>
+                    <li className="nav-item"><a className="update-home-btn d-flex" href="/home">Home</a></li>
                     {/* <li className="nav-item"><a href="/logout">Sign Out</a></li> */}
                 </ul>
             </div>
-            <h2 className="text-center">Share your thoughts with others</h2>
-            <div className="p-5 mb-4 w-75 mx-auto bg-body-tertiary rounded-3">
+            <div className="form-container mt-3 p-5 mb-2 w-75 mx-auto rounded-3">
+                <h2 className="text-center">Share your thoughts with others</h2>
                 <div className="container-fluid py-5">
-                    <form onSubmit={submitHandler}>
+                    <form className="d-flex flex-column align-items-center"onSubmit={submitHandler}>
                     {errors.map((err, index) => (
-                    <p className="errors" key={index}>{err}</p>
-                ))}
-                        <div className="d-flex justify-content-around">
-                            <div>
+                    <p className="errors text-danger" key={index}>{err}</p>
+                    ))}
+                        <div className="row">
+                            <div className='col'>
                                 <label className="form-label" >Game Title:</label>
                                 <input onChange={(e) => setGameTitle(e.target.value)} 
                                 // value={gameTitle}
@@ -75,11 +75,11 @@ const CreateReview = (props) => {
                                 type="text" 
                                 className="form-control"/>
                                 { errors.gameTitle ? 
-                        <p>{errors.gameTitle.message}</p>
-                        : null
-                    }
+                                    <p>{errors.gameTitle.message}</p>
+                                    : null
+                                }
                             </div>
-                            <div className="mb-5">
+                            <div className="col mb-5">
                                 <label className="form-label">Platform(s):</label>
                                 <input 
                                 onChange={(e) => setPlatforms(e.target.value)} 
@@ -88,13 +88,14 @@ const CreateReview = (props) => {
                                 type="text" 
                                 className="form-control"/>
                                 { errors.platforms ? 
-                        <p>{errors.platforms.message}</p>
-                        : null
-                    }
+                                <p>{errors.platforms.message}</p>
+                                : null
+                                }
                             </div>
                         </div>
-                        <div className="d-flex justify-content-center mb-3">
-                        <label className="form-label" htmlFor="rating">Rating: </label>
+                        
+                        <div className="rating-container d-flex flex-column justify-content-center align-items-center mb-3">
+                            <label className="form-label" htmlFor="rating">Rating: </label>
                             <select className="form-select w-auto" name="rating" onChange={(e) => setRating(e.target.value)} >
                                 <option value={0}>0</option>
                                 <option value={1}>1</option>
@@ -114,7 +115,7 @@ const CreateReview = (props) => {
                         : null
                     }
                         </div>
-                        <div>
+                        <div className='comment-section mb-4'>
                             <div className="mb-3">
                                 <label className="form-label">Comment(s):</label>
                                 <textarea
@@ -127,7 +128,7 @@ const CreateReview = (props) => {
                                 { errors.comments ? 
                         <p>{errors.comments.message}</p>
                         : null
-                    }
+                        }
                             </div>
                         </div>
                         <div className="d-flex justify-content-center">

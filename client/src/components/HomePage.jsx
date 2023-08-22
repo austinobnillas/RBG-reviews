@@ -9,10 +9,11 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/viewreviews')
+        axios.get('http://localhost:8000/api/viewreviews', {withCredentials: true})
             .then(res => setAllReviews(res.data))
             .catch(err => {
                 console.log(err)
+                navigate('/')
         })
     }, [])
 
@@ -58,9 +59,9 @@ const Home = () => {
                     <Link to={`/create`} className="post-review-btn">Post a Review</Link>
                 </div>
                 { allReviews.length === 0 ? 
-                <div>
+                <div className="d-flex flex-column justify-content-center align-items-center">
                     <p>No Reviews Yet</p>
-                    <Link to={'/create'}>Post a Review</Link>
+                    <Link to={'/create'} className="btn btn-secondary">Post a Review</Link>
                 </div> 
                 : allReviews.map(review => {
                     return (
@@ -79,7 +80,7 @@ const Home = () => {
                                                 <li style={{fontWeight: "500", color:"#502D55"}}>{review.gameTitle}</li>
                                             </div>
                                             <div className="actions-cont d-flex flex-row justify-content-evenly">
-                                                <Link to={`/update/${review._id}`} className="text-decoration-none">Edit Post</Link>
+                                                <Link to={`/update/${review._id}`} className="text-decoration-none">Edit</Link>
                                                 <p onClick={deleteHandler} id={review._id} className="delete-icon">Delete</p>
                                             </div>
                                         </div>

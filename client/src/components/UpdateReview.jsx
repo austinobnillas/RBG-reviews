@@ -45,7 +45,7 @@ const UpdateReview = (props) => {
         }, {withCredentials: true})
         .then((res)=>{
             console.log(res.data);
-            navigate("/");
+            navigate("/home");
         })
         .catch((err) =>{
             const loginError = err.response.data.msg;
@@ -68,16 +68,16 @@ const UpdateReview = (props) => {
 
 
     return(
-        <div className="container">
-            <div className="d-flex justify-content-around align-items-center">
-                <h1>Reviews By Gamers</h1>
-                <ul className="nav">
-                    <li className="nav-item"><a href="/">Home</a></li>
-                    <li className="nav-item"><a href="#">Sign Out</a></li>
+        <div className="update-container">
+            <div className="d-flex justify-content-between align-items-center text-white">
+                <ul className="update-nav d-flex justify-content-between align-items-center">
+                    <h1 className="text-white"style={{fontFamily: "Rubik"}}>Reviews By Gamers</h1>
+                    <li className=""><a className='update-home-btn d-flex' href="/home">Home</a></li>
+                    {/* <li className="nav-item"><a href="#">Sign Out</a></li> */}
                 </ul>
             </div>
-            <h2 className="text-center">Share your thoughts with others</h2>
-            <div className="p-5 mb-4 w-75 mx-auto bg-body-tertiary rounded-3">
+            <div className="form-container p-5 mb-4 mt-4 w-75 mx-auto rounded-3">
+                <h2 className="text-center">Edit Review</h2>
                 <div className="container-fluid py-5">
                     <form onSubmit={submitHandler}>
                     {errors.map((err, index) => (

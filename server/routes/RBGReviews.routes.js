@@ -7,7 +7,7 @@ module.exports = app => {
     app.post('/api/register', userController.register);
     app.post('/api/login', userController.login);
     app.post('/api/logout', userController.logout);
-    app.get('/api/viewreviews', reviewController.findAllGameReview);
+    app.get('/api/viewreviews', authenticate, reviewController.findAllGameReview);
     app.get('/api/reviews/:id', reviewController.findOneSingleGameReview);
     app.post('/api/new', authenticate, reviewController.createGameReview);
     app.patch('/api/edit/:id', authenticate, reviewController.updateGameReview);

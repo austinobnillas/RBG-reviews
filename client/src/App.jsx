@@ -12,23 +12,13 @@ import Login from './components/login';
 import UserForm from './components/register';
 
 function App() {
-  // const [allReviews, setAllReviews] = useState([]);
-
-  // useEffect(() => {
-  //   axios.get('http://127.0.0.1:8000/api/viewreviews')
-  //       .then(res => setAllReviews(res.data))
-  //       .catch(err => {
-  //           console.log(err)
-  //       })
-  //   }, [])
-
   return (
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path={'/login'} element={<Login />} />
+          <Route path={'/'} element={<Login />} />
           <Route path={'/register'} element={<UserForm />} />
-          <Route path={'/'} element={<Home /*allItems={allReviews*/ />} />
+          <Route path={'/home'} element={<Home />} />
           <Route path={'/create'} element={<CreateReview />} />
           <Route path={'/update/:id'} element={<UpdateReview />} />
         </Routes>

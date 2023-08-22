@@ -1,8 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Rubik:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Rubik:wght@300;400;600&display=swap');
 
 * {
   margin: 0;
   padding: 0;
+}
+
+li {
+  list-style: none;
 }
 /* Home Page CSS Section, will improve once full functionality confirmed. */
 .main-page-container {
@@ -21,6 +25,7 @@
 .main-logo:hover {
   background: -webkit-linear-gradient(360deg, #ee4d5f, #60b6e5, #42E695);
   -webkit-background-clip: text;
+          background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -91,8 +96,8 @@
   border-radius: 20px;
   border: none;
   color: #ffff;
-  width: 120px;
-  height: 20px;
+  width: 150px;
+  height: 40px;
   text-align: center;
   text-decoration: none;
   padding: 10px;
@@ -113,40 +118,175 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 3em;
+  /* margin: 0 33em 0 33em; <--- might add this if i add a sidebar.*/
 }
 
-.reviews-container {
+.review-list-container {
   margin: 0 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2em 0;
+.review {
+  display: flex;
+  align-items: center;
+  background: #FFFF;
+  border-radius: 10px;
+  width: 58em;
 }
 
-td, th {
-  border: 1px solid;
-  padding: 8px;
+.inner-review {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  width: 55em;
+  /* justify-content: space-evenly; */
 }
 
-td {
-  border:none;
+.profile-cont {
+  width: 80px;
+  margin-right: 2em;
 }
 
-.table-head > tr {
-  background-color: rgb(133, 153, 233);
-  color: white;
+.profile-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 40px;
 }
 
-.table-body > tr {
-  padding: 12px;
-  background-color: white;
+.emphasize-text {
+  font-weight: 600;
+}
+
+.out-of {
+  color: #59577d57;
+}
+
+.review-top-section {
+  display: flex;
+  justify-content: space-between;
+  height: 2em;
+  font-family: DM Sans;
+  font-size: 18px;
+  width: 40em;
+}
+
+.creator-title {
+  width:20em;
+  font-family: DM Sans;
+  font-weight: 600;
+}
+
+.actions-cont {
+  width: 10em;
+  /* margin-left: 470px; */
+}
+
+.comments {
+  font-weight: 400;
+  font-family: DM Sans;
+  color: #54526e;
 }
 
 .delete-icon {
-  cursor: pointer;
+  height: 40px;
   color: red;
 }
-
 /* end of Homepage CSS section */
+
+/* LOGIN PAGE */
+
+.login-bg {
+  background-image: url('./assets/login-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 0;
+  box-shadow: 0 0 50em 10px rgb(0, 0, 0) inset;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+}
+
+.login-container {
+  font-family: DM Sans;
+}
+
+.login-btn {
+  background: #000000b8;
+  border: none;
+  border-radius: 20px;
+  color: #FFFF;
+  height: 40px;
+  width: 100px;
+}
+
+.login-btn:hover {
+  box-shadow: 0 0 20px #ffff;
+}
+
+.right {
+  right: 0;
+  background: rgba(144, 128, 106, 0.63);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(229, 198, 154, 0.3);
+  color: #ffff;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Registration Page CSS */
+.reg-bg {
+  background-image: url('./assets/registration-bg.jpeg');
+  background-position: 92% 0;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.reg-left {
+  left: 0;
+}
+
+/* Control the right side */
+.reg-right {
+  right: 0;
+  background: linear-gradient(to bottom right, #80A4CB, #cce0f3);
+}
+
+.sign-up-btn {
+  /* background: linear-gradient(to top left, #A32CDF, #106AD2); */
+  background: #415771;
+  border: none;
+  border-radius: 20px;
+  color: #FFFF;
+  height: 40px;
+  width: 100px;
+}

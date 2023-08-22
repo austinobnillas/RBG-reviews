@@ -30,7 +30,7 @@ const CreateReview = (props) => {
             // setPlatforms("");
             // setRating("");
             // setComments("");
-            navigate("/");
+            navigate("/home");
         })
         .catch((err) =>{
             const loginError = err.response.data.msg;
@@ -55,8 +55,8 @@ const CreateReview = (props) => {
             <div className="d-flex justify-content-around align-items-center">
                 <h1>Reviews By Gamers</h1>
                 <ul className="nav">
-                    <li className="nav-item"><a href="/">Home</a></li>
-                    <li className="nav-item"><a href="#">Sign Out</a></li>
+                    <li className="nav-item"><a href="/home">Home</a></li>
+                    {/* <li className="nav-item"><a href="/logout">Sign Out</a></li> */}
                 </ul>
             </div>
             <h2 className="text-center">Share your thoughts with others</h2>
@@ -69,8 +69,7 @@ const CreateReview = (props) => {
                         <div className="d-flex justify-content-around">
                             <div>
                                 <label className="form-label" >Game Title:</label>
-                                <input 
-                                onChange={(e) => setGameTitle(e.target.value)} 
+                                <input onChange={(e) => setGameTitle(e.target.value)} 
                                 // value={gameTitle}
                                 name="gameTitle"
                                 type="text" 

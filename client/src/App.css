@@ -25,6 +25,7 @@ li {
 .main-logo:hover {
   background: -webkit-linear-gradient(360deg, #ee4d5f, #60b6e5, #42E695);
   -webkit-background-clip: text;
+          background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

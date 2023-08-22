@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState();
+    const [errors, setErrors] = useState('');
     const navigate = useNavigate();
     
     const handleSubmit = (e) => {
@@ -19,7 +19,7 @@ const Login = () => {
             navigate('/home')
         }) 
         .catch((err)=>{
-            alert(err.response.data.msg)
+            setErrors(err.response.data.msg)
             console.log(err);
             // const errorResponse = err.response.data.errors; 
             // const errorArr = [];
@@ -42,6 +42,7 @@ const Login = () => {
                 <div className="centered">
                     <h1 style={{fontFamily:"Rubik", fontWeight:"800"}}>RBG</h1>
                     <h2 className="mb-4 mt-4">Sign In | <Link to={'/register'} className="text-decoration-none text-dark" >Register</Link></h2>
+                    { errors ? <p className="text-danger">Invalid Credentials</p> : null}
                     <form onSubmit={handleSubmit}>
                     {/* {errors.map((err, index) => (
                             <p key="{index}">{err}</p>

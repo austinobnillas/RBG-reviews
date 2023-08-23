@@ -11,6 +11,7 @@ const UserForm = (props) => {
     const [password, setPassword] = useState(""); 
     const [confirmPassword, setConfirmPassword] = useState(""); 
     const [errors, setErrors] = useState([]);
+    const [usernameError, setUsernameError] = useState();
     const navigate = useNavigate();
     
     const createUser = (e) => {
@@ -21,17 +22,18 @@ const UserForm = (props) => {
             .then((res) => {
                 navigate('/');
             })
-        .catch((err) => {
-            // const errorResponse = err.response.data.errors; 
+            .catch((err) => {
+            const errorResponse = err.response.data.errors; 
             // const errorMsg = err.response.data.msg
-            // if (errorMsg) {
-            //     alert(errorMsg)
-            // }
-            // const errorArr = [];
-            // for (const key of Object.keys(errorResponse)) {
-            //     errorArr.push(errorResponse[key].message)
-            // }
-            setErrors(err.response.data.errors);
+            const errorMsg = err.response.data.msg;
+            if (errorMsg) {
+                setUsernameError(errorMsg);
+                navigate("/register");
+            }
+            if (errorResponse) {
+                setErrors(err.response.data.errors);
+                setUsernameError("");
+            }
         })
         // const newUser = { username, email, password };
         // console.log("Welcome", newUser);
@@ -60,6 +62,7 @@ const UserForm = (props) => {
                             <div className='mb-4'>
                                 <label className="form-label d-flex" htmlFor="username" >Username </label> 
                                 <input className="reg-input form-control" type="text" name="username" onChange={ (e) => setUsername(e.target.value) } />
+                                {usernameError ? <p className='text-danger d-flex'>{usernameError}</p> : null}
                                 {errors.username ? <p className='text-danger d-flex'>Username required</p> : null}
                             </div>
                             <div className='mb-4'>

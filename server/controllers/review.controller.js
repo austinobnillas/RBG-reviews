@@ -1,4 +1,4 @@
-const GameReview = require('../models/gamereview.model');
+const GameReview = require('../models/gameReview.model');
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
 
